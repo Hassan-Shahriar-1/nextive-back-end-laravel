@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\custom_log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('/login',[custom_log::class,'login']);
+Route::group(['prefix'=>'category','middleware'=>'jwt'],function(){
+    Route::post('/create',[CategoryController::class,'create']);
 });
