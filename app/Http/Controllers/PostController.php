@@ -52,7 +52,7 @@ class PostController extends Controller
 
     }
     public function post_list(){
-       $post_data= post::all()->random();
+       $post_data= post::all();
        if(!empty($post_data)){
         $data=$post_data;
 
