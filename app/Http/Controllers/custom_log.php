@@ -28,7 +28,7 @@ class custom_log extends Controller
         
         $token = auth('api')->attempt($credentials);
         if($token === false){
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['error' => 'tknfnd'], 401);
         }
 
         return $this->createNewToken($token);
@@ -39,7 +39,7 @@ class custom_log extends Controller
    
     public function logout() {
         auth()->logout();
-        return response()->json(['message' => 'User successfully signed out']);
+        return response()->json(['sts'=>'logout','msg' => 'User successfully signed out']);
     }
     
     

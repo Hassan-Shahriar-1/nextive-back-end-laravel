@@ -42,14 +42,14 @@ class Handler extends ExceptionHandler
     {
         $this->renderable(function(TokenInvalidException $e, $request){
             return response()->json([
-                'sts'=>'tknfnd','error'=>'Invalid token'],401);
+                'error'=>'tknfnd','msg'=>'Invalid token'],401);
         });
         $this->renderable(function (TokenExpiredException $e, $request) {
-            return response()->json(['sts'=>'tknfnd','error'=>'Token has Expired'],401);
+            return response()->json(['error'=>'tknfnd','msg'=>'Token has Expired'],401);
         });
 
         $this->renderable(function (JWTException $e, $request) {
-            return response()->json(['sts'=>'tknfnd','error'=>'Token not parsed'],401);
+            return response()->json(['error'=>'tknfnd','msg'=>'Token not parsed'],401);
         });
     }
 }

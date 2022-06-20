@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/post/list',[PostController::class,'post_list']);
 Route::get('/post/{category}',[PostController::class,'post_by_category']);
 Route::post('/login',[custom_log::class,'login']);
+Route::post('/logout',[custom_log::class,'logout']);
 Route::group(['prefix'=>'category','middleware'=>'jwt'],function(){
     Route::post('/create',[CategoryController::class,'create']);
     Route::get('/list',[CategoryController::class,'category_for_insert_page']);
