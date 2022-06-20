@@ -48,7 +48,7 @@ class PostController extends Controller
 
     }
     public function post_list(){
-       $post_data= post::all();
+       $post_data= post::where('sts',0)->get();
        if(!empty($post_data)){
         $data=$post_data;
 
@@ -103,7 +103,7 @@ class PostController extends Controller
     }
 
     public function post_by_category($category){
-        $data=post::where('category','like','%'.$category.'%')->get();
+        $data=post::where('category','like','%'.$category.'%')->where('sts',0)->get();
         if(!empty($data)){
             return response()->json([
                 'sts'=>'found',
