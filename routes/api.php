@@ -19,14 +19,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/post/list',[PostController::class,'post_list']);
 Route::get('/post/{category}',[PostController::class,'post_by_category']);
 Route::post('/login',[custom_log::class,'login']);
+Route::get('/category/list',[CategoryController::class,'category_for_insert_page']);
+
 Route::post('/logout',[custom_log::class,'logout']);
 Route::group(['prefix'=>'category','middleware'=>'jwt'],function(){
     Route::post('/create',[CategoryController::class,'create']);
-    Route::get('/list',[CategoryController::class,'category_for_insert_page']);
-});
+    });
 Route::group(['prefix'=>'posts','middleware'=>'jwt'],function(){
     Route::post('/create',[PostController::class,'post_insert']);
-    Route::get('edit/{postid}',[PostController::class,'edit']);
-    Route::post('/update/post',[PostController::class,'update']);
-    Route::get('/delete/{postid}',[PostController::class,'delete']);
+    Route::get('edit/{postid}',[PostController::class,'edit_post']);
+    Route::post('/update/{id}',[PostController::class,'update_post']);
+    Route::get('/delete/{postid}',[PostController::class,'delete_post']);
 });

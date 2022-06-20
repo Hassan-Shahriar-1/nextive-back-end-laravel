@@ -24,7 +24,7 @@ class CategoryController extends Controller
             $insert=category::insert([
                 
                 'name'=>$request['category_name'],
-                'created_at'=>Carbon::now(),
+                'created_at'=>date('Y-m-d H:i:s'),
                 
             ]);
             if($insert==true){

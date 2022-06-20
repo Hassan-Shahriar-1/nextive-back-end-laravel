@@ -12,13 +12,9 @@ class PostController extends Controller
         $data=[];
         $data['title']=$request['title'];
         $data['description']=$request['description'];
-        $data['category']=$request['categories'];
+        $data['category']=implode(" ",$request['categories']);
         $data['sts']=$request['sts'];
-        if($request->file('image')){
-
-        }else{
-            $data['img']=null;
-        }
+        $data['created_at']=date('Y-m-d H:i:s');
         $check=post::insert($data);
         if($check){
             return response()->json([
@@ -70,13 +66,14 @@ class PostController extends Controller
         if($data){
             $data['title']=$request['title'];
             $data['description']=$request['description'];
-            $data['category']=$request['categories'];
+            $data['category']=implode(' ',$request['categories']);
             $data['sts']=$request['sts'];
-            if(file($request['image'])){////image file will be upload and name to 
-
-                $img_path='demo';
-                $data['img']=$img_path;
-            }
+            $data['updated_at']=date('Y-m-d H:i:S');
+            $data->save();
+            return response()->json([
+                'sts'=>'updated',
+                'msg'=>'Post Successfully updated'
+            ]);
 
         }else{
             return response()->json([
